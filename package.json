@@ -16,8 +16,14 @@
   "contributes": {
     "commands": [
       {
-        "command": "vscode-svelte.helloWorld",
-        "title": "Hello World"
+        "command": "vscode-svelte.create",
+        "title": "Create",
+        "category": "VSCode Svelte"
+      },
+      {
+        "command": "vscode-svelte.refresh",
+        "title": "Refresh",
+        "category": "VSCode Svelte"
       }
     ]
   },

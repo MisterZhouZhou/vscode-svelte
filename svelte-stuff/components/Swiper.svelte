@@ -10,6 +10,10 @@
 
   function buttonHandler() {
     console.log('$---button 点击');
+    tsvscode.postMessage({
+      type: 'info',
+      value: { reject: 'reject' },
+    });
   }
 </script>
 
@@ -24,6 +28,6 @@
 </style>
 
 <div class="center">
-  <h1>hello center!!!</h1>
+  <h1>hello cente!!!</h1>
   <button class="button" on:click={buttonHandler}>点击</button>
 </div>

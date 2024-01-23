@@ -43,7 +43,6 @@ export class SwiperPanel {
       {
         // Enable javascript in the webview
         enableScripts: true,
-
         // And restrict the webview to only loading content from our extension's `media` directory.
         localResourceRoots: [
           vscode.Uri.joinPath(extensionUri, "media"),
@@ -167,21 +166,17 @@ export class SwiperPanel {
       vscode.Uri.joinPath(this._extensionUri, "out", "compiled/swiper.js")
     );
 
-    // Local path to css styles
-    const styleResetPath = vscode.Uri.joinPath(
+    // Uri to load styles into webview
+    const stylesResetUri = webview.asWebviewUri(vscode.Uri.joinPath(
       this._extensionUri,
       "media",
       "reset.css"
-    );
-    const stylesPathMainPath = vscode.Uri.joinPath(
+    ));
+    const stylesMainUri = webview.asWebviewUri(vscode.Uri.joinPath(
       this._extensionUri,
       "media",
       "vscode.css"
-    );
-
-    // Uri to load styles into webview
-    const stylesResetUri = webview.asWebviewUri(styleResetPath);
-    const stylesMainUri = webview.asWebviewUri(stylesPathMainPath);
+    ));
     const cssUri = webview.asWebviewUri(
       vscode.Uri.joinPath(this._extensionUri, "out", "compiled/swiper.css")
     );
@@ -204,6 +199,10 @@ export class SwiperPanel {
 				<link href="${stylesResetUri}" rel="stylesheet">
 				<link href="${stylesMainUri}" rel="stylesheet">
         <link href="${cssUri}" rel="stylesheet">
+        <script nonce="${nonce}">
+          const apiBaseUrl = ${JSON.stringify(apiBaseUrl)};
+          const tsvscode = acquireVsCodeApi();
+        </script>
 			</head>
       <body>
 			</body>
