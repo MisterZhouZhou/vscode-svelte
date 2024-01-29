@@ -21,6 +21,11 @@
         "category": "VSCode Svelte"
       },
       {
+        "command": "vscode-svelte.debug",
+        "title": "Debug",
+        "category": "VSCode Svelte"
+      },
+      {
         "command": "vscode-svelte.refresh",
         "title": "Refresh",
         "category": "VSCode Svelte"

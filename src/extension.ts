@@ -11,17 +11,26 @@ export function activate(context: vscode.ExtensionContext) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "vscode-svelte" is now active!');
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
+  // webview
 	const webViewCmd = vscode.commands.registerCommand('vscode-svelte.create', () => {
 		SwiperPanel.createOrShow(context.extensionUri);
 	});
 	context.subscriptions.push(webViewCmd);
 
+  // debug
+	const debugCmd = vscode.commands.registerCommand('vscode-svelte.debug', () => {
+		vscode.commands.executeCommand('workbench.action.webview.openDeveloperTools');
+	});
+	context.subscriptions.push(debugCmd);
+
+  // refresh
   const disposable = vscode.commands.registerCommand('vscode-svelte.refresh', () => {
     SwiperPanel.kill();
 		SwiperPanel.createOrShow(context.extensionUri);
+    // 打开调试工具
+    // setTimeout(() => {
+    //   vscode.commands.executeCommand('workbench.action.webview.openDeveloperTools');
+    // }, 500);
 	});
 	context.subscriptions.push(disposable);
 }
